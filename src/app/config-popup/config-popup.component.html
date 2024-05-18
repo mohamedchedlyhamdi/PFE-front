@@ -1,0 +1,18 @@
+<div class="popup">
+    <div class="popup-content">
+      <span class="close" (click)="closePopup()">&times;</span>
+      <h2>Configuration {{ configType }}</h2>
+      <form (ngSubmit)="onSubmit()">
+        <div>
+          <label for="field">Champ:</label>
+          <input type="text" id="field" [(ngModel)]="field" name="field" required>
+        </div>
+        <div>
+          <label for="regex">Expression Régulière de Filtrage:</label>
+          <input type="text" id="regex" [(ngModel)]="regex" name="regex" required>
+        </div>
+        <button type="submit">Soumettre</button>
+      </form>
+    </div>
+  </div>
+  

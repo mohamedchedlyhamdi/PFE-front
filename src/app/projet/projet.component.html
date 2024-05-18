@@ -1,0 +1,33 @@
+<div class="projet">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nom</th>
+        <th>Date d'entrée</th>
+        <th>Dernière analyse</th>
+        <th>Description</th>
+        <th>État</th>
+        <th>Configuration</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let projet of projets">
+        <td>{{ projet.id }}</td>
+        <td>{{ projet.nom }}</td>
+        <td>{{ projet.date_entree }}</td>
+        <td>{{ projet.derniere_analyse }}</td>
+        <td>{{ projet.description }}</td>
+        <td>
+          <span [ngClass]="{'etat-en-cours': projet.etat === 'En cours', 'etat-termine': projet.etat === 'Terminé'}">{{ projet.etat }}</span>
+        </td>
+        <td>
+          <div class="buttons">
+            <button (click)="configureProjet(projet)">Config file log</button>
+            <button (click)="configureProjet(projet)">Config data base </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

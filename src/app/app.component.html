@@ -1,0 +1,65 @@
+<header>
+  <div class="navbar">
+    <div class="logo">
+      <img src="../assets/th1.jpg" alt="Logo">
+    </div>
+    <ul class="nav">
+      <li class="item">
+        <a href="/home1" routerLink="/home1" routerLinkActive="active">Home</a>
+      </li>
+      <li class="item">
+        <a href="/login" routerLink="/login" routerLinkActive="active">Login</a>
+      </li>
+      <li class="item">
+        <a href="/formulaire" routerLink="/formulaire" routerLinkActive="active">Formulaire</a>
+      </li>
+      <li class="item">
+        <a href="/projet" routerLink="/projet" routerLinkActive="active">Projet</a>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<br/><br/>
+
+<div class="projet">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nom</th>
+        <th>Date d'entrée</th>
+        <th>Dernière analyse</th>
+        <th>Description</th>
+        <th>État</th>
+        <th>Configuration</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let projet of projets">
+        <td>{{ projet.id }}</td>
+        <td>{{ projet.nom }}</td>
+        <td>{{ projet.date_entree }}</td>
+        <td>{{ projet.derniere_analyse }}</td>
+        <td>{{ projet.description }}</td>
+        <td>
+          <span [ngClass]="{'etat-en-cours': projet.etat === 'En cours', 'etat-termine': projet.etat === 'Terminé'}">{{ projet.etat }}</span>
+        </td>
+        <td>
+          <div class="buttons">
+            <button (click)="configureProjet(projet, 'file')">Config file log</button>
+            <button (click)="configureProjet(projet, 'database')">Config database</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<app-config-popup *ngIf="showPopup" [configType]="currentConfigType" (close)="closePopup()"></app-config-popup>
+
+<br/><br/>
+<span>
+  <br/><br/>
+  <router-outlet></router-outlet>
+</span>
