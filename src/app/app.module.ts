@@ -8,7 +8,9 @@ import { FormsModule } from '@angular/forms';
 import { FormulaireComponent } from './formulaire/formulaire.component';
 import { ProjetComponent } from './projet/projet.component';
 import { Home1Component } from './home1/home1.component';
-import { ConfigPopupComponent } from './config-popup/config-popup.component';
+import { AuthService } from './auth.service';
+import { InscrireComponent } from './inscrire/inscrire.component';
+
 
 
 
@@ -20,7 +22,9 @@ import { ConfigPopupComponent } from './config-popup/config-popup.component';
     FormulaireComponent,
     ProjetComponent,
     Home1Component,
-    ConfigPopupComponent,
+    InscrireComponent,
+   
+  
     
     
     
@@ -33,7 +37,7 @@ import { ConfigPopupComponent } from './config-popup/config-popup.component';
    // Add this line
 
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

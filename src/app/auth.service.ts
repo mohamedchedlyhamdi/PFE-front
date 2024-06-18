@@ -1,17 +1,17 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  private loginUrl = 'http://localhost:8081/api/users/login';
 
-
-  private baseUrl = 'http://localhost:8081/api/users';
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   login(email: string, password: string): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/login`, { email, password });
-  }}
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post(this.loginUrl, { email, password }, { headers, responseType: 'text' });
+  }
+}

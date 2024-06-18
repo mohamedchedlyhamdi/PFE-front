@@ -1,33 +1,59 @@
-<div class="projet">
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Nom</th>
-        <th>Date d'entrée</th>
-        <th>Dernière analyse</th>
-        <th>Description</th>
-        <th>État</th>
-        <th>Configuration</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let projet of projets">
-        <td>{{ projet.id }}</td>
-        <td>{{ projet.nom }}</td>
-        <td>{{ projet.date_entree }}</td>
-        <td>{{ projet.derniere_analyse }}</td>
-        <td>{{ projet.description }}</td>
-        <td>
-          <span [ngClass]="{'etat-en-cours': projet.etat === 'En cours', 'etat-termine': projet.etat === 'Terminé'}">{{ projet.etat }}</span>
-        </td>
-        <td>
-          <div class="buttons">
-            <button (click)="configureProjet(projet)">Config file log</button>
-            <button (click)="configureProjet(projet)">Config data base </button>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+<div class="container">
+  <div class="projet">
+    <div class="add-button-container">
+      <button class="button-24" routerLink="/formulaire">Ajouter projet</button>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nom</th>
+          <th>Date d'entrée</th>
+          <th>Dernière analyse</th>
+          <th>Description</th>
+          <th>État</th>
+          <th>Configuration</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let projet of projets">
+          <td>{{ projet.id }}</td>
+          <td>{{ projet.nom }}</td>
+          <td>{{ projet.date_entree | date:'yyyy-MM-dd HH:mm:ss' }}</td>
+          <td>{{ projet.derniere_analyse | date:'yyyy-MM-dd HH:mm:ss' }}</td>
+          <td>{{ projet.description }}</td>
+          <td>
+            <span [ngClass]="{'etat-en-cours': projet.etat === 'En cours', 'etat-termine': projet.etat === 'Terminé'}">{{ projet.etat }}</span>
+          </td>
+          <td>
+            <div class="buttons">
+              <button (click)="openConfigModal('log', projet.nom)">Config file log</button>
+              <button (click)="openConfigModal('db', projet.id)" class="configure-button">Config data base</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Modal for regex input -->
+  <div class="modal-overlay" [ngStyle]="{'display': showModal ? 'block' : 'none'}">
+    <div class="modal-card">
+      <span class="close" (click)="closeModal()">&times;</span>
+      <h2>Enter Configuration Details</h2>
+      <input type="text" [(ngModel)]="filterAttribute" placeholder="Enter attribute to filter">
+      <input type="text" [(ngModel)]="searchQuery" placeholder="Enter search query">
+      <button (click)="submitConfiguration()">Start Analysis</button>
+    </div>
+  </div>
+
+  <!-- Loading indicator -->
+  <div class="loader" *ngIf="loading">Loading...</div>
+
+  <!-- Results Display -->
+  <div class="results" *ngIf="analysisResults.length > 0">
+    <h2>Analysis Results</h2>
+    <pre>{{ analysisResults | json }}</pre>
+    <button (click)="generatePDF(analysisType)">Generate PDF</button>
+  </div>
 </div>

@@ -1,34 +1,21 @@
-<!--
-Question : 
-https://openclassrooms.com/forum/sujet/formulaire-de-contact-responsive
--->
 <div class="container">
-    <h1>Formulaire</h1>
-    <form action="/action_page.php">
-      <label for="fname">Nom & prénom</label>
-      <input type="text" id="fname" name="firstname" placeholder="Votre nom et prénom">
-  
-      <label for="sujet">Nom Sujet</label>
-      <input type="text" id="nom sujet" name="nom sujet" placeholder="L'objet de votre message">
-  
-      <label for="login">login</label>
-      <input id="login" type="login" name="login" placeholder="votre login">
+  <h1>Formulaire</h1>
+  <form (submit)="onSubmit(username.value, password.value, host.value, remoteFilePath.value, description.value)">
+    <label for="username">Nom d'utilisateur</label>
+    <input type="text" id="username" #username placeholder="Nom d'utilisateur">
 
-      <label for="password">password</label>
-      <input id="password" type="password" name="password" placeholder="votre password">
+    <label for="password">Mot de passe</label>
+    <input type="password" id="password" #password placeholder="Mot de passe">
 
-      <label for="path">path</label>
-      <input id="path" type="path" name="path" placeholder="path">
+    <label for="host">Adresse IP</label>
+    <input type="text" id="host" #host placeholder="Adresse IP">
 
-      <label for="adresse IP"> adresse IP </label>
-      <input id="adresse" type="adresse" name="adresse IP" placeholder="adresse IP">
-  
-  
-      <label for="subject">Message</label>
-      <textarea id="subject" name="subject" placeholder="Votre message" style="height:200px"></textarea>
-  
-      <input type="submit" value="Envoyer">
-    </form>
-  </div>
-  
-  
+    <label for="remoteFilePath">Chemin du fichier distant</label>
+    <input type="text" id="remoteFilePath" #remoteFilePath placeholder="Chemin du fichier distant">
+    
+    <label for="description">Description</label>
+    <textarea id="description" #description placeholder="Votre message" style="height:200px"></textarea>
+    
+    <input type="submit" value="Envoyer">
+  </form>
+</div>

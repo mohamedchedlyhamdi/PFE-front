@@ -1,16 +1,18 @@
-<!-- login.component.html -->
-<div class="login-box">
-  <h2>Login</h2>
-  <form (submit)="onSubmit()">
-    <div class="user-box">
-      <input type="text" name="email" [(ngModel)]="email" required>
-      <label>Email</label>
-    </div>
-    <div class="user-box">
-      <input type="password" name="password" [(ngModel)]="password" required>
-      <label>Password</label>
-    </div>
-    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
-    <button type="submit">Submit</button>
-  </form>
+<div class="login-container">
+  <div class="login-box">
+    <img src="../assets/logov.png" alt="Logo" class="logo">
+    <form (submit)="onSubmit()">
+      <div class="user-box">
+        <input type="text" name="email" [(ngModel)]="email" required>
+        <label>Email</label>
+      </div>
+      <div class="user-box">
+        <input type="password" name="password" [(ngModel)]="password" required>
+        <label>Password</label>
+      </div>
+      <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+      <button type="submit">Se connecter</button>
+    
+    </form>
+  </div>
 </div>

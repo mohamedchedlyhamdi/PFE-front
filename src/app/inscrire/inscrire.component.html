@@ -1,0 +1,29 @@
+<div class="employee-table">
+    <button class="add-button">Ajouter</button>
+    <table>
+      <thead>
+        <tr>
+          <th>Nom de l'employé</th>
+          <th>Rôle</th>
+          <th>Département</th>
+          <th>Type d'emploi</th>
+          <th>Date d'entrée</th>
+          <th>Actions</th> <!-- Nouvelle colonne pour les actions -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let employe of employes">
+          <td>{{ employe.nom }}</td>
+          <td>{{ employe.role }}</td>
+          <td>{{ employe.departement }}</td>
+          <td>{{ employe.typeEmploi }}</td>
+          <td>{{ employe.dateEntree }}</td>
+          <td>
+            <button class="edit-button">Modifier</button>
+            <button class="delete-button">Supprimer</button>
+          </td> <!-- Boutons pour modifier et supprimer -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
